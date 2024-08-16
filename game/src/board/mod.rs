@@ -24,18 +24,18 @@ impl Index<Player> for Scores {
     }
 }
 
-pub struct Board {
-    blanks: Bitboard,
-    letters: Vec<Bitboard>,
+pub struct Board<BB: Bitboard> {
+    blanks: BB,
+    letters: Vec<BB>,
     current_turn: Player,
     scores: Scores,
 }
 
-impl Board {
+impl<BB: Bitboard> Board<BB> {
     pub fn new(num_letters: u8) -> Self {
         Self {
-            blanks: Bitboard::EMPTY,
-            letters: vec![Bitboard::EMPTY; num_letters as usize],
+            blanks: Bitboard::empty(),
+            letters: vec![Bitboard::empty(); num_letters as usize],
             current_turn: Player::First,
             scores: Scores::default(),
         }

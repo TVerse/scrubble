@@ -1,8 +1,10 @@
 use anyhow::Result;
+use bitboard::Bitboard;
 use board::Board;
 
 pub mod bitboard;
 mod board;
+
 pub struct TileMap {
     // TODO score
     letters: Vec<String>,
@@ -39,12 +41,12 @@ impl TileMap {
 
 pub struct TileMapIdx(u8);
 
-pub struct Game {
-    board: Board,
+pub struct Game<BB: Bitboard> {
+    board: Board<BB>,
     tiles: TileMap,
 }
 
-impl Game {
+impl<BB: Bitboard> Game<BB> {
     pub fn new(tiles: TileMap) -> Self {
         Self {
             board: Board::new(tiles.len()),

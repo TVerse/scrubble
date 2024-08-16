@@ -1,10 +1,9 @@
-[package]
-name = "scrubble"
-version = "0.1.0"
-edition = "2021"
+[workspace]
+resolver = "2"
+members = ["game", "scrubble"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[profile.dev]
+lto = true
 
-[dependencies]
-anyhow = "1.0.71"
-paste = "1.0.15"
+[profile.release]
+lto = true
